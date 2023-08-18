@@ -1,6 +1,6 @@
 import './App.css';
 import { BrowserRouter, Routes, Route  } from 'react-router-dom';
-import Login from './Views/Login';
+import Login from './Views/Home';
 import Profile from './Views/Profile';
 import Translate from './Views/Translate';
 
