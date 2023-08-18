@@ -1,3 +1,48 @@
 .App {
   text-align: center;
+  /* Rectangle 1 */
+  position: absolute;
+  width: 100%;
+  /*height: 242px;*/
+  height: 100%;
+  background: #FFCE1F;
+  color: #FFFFFF;
 }
+
+.App #login-header {
+  /*
+  width: 100%;
+  height: 100%;
+  padding: 10px;
+  border: 5px solid gray;
+  margin: 0;*/
+  /* Signin */
+
+position: absolute;
+width: 490px;
+height: 593px;
+left: 400px;
+top: 88px;
+
+background: orange;
+border-radius: 15px;
+
+}
+
+
+/* Lost in Translation */
+/*
+position: absolute;
+width: 181px;
+height: 24px;
+
+font-family: 'Inter';
+font-style: normal;
+font-weight: 700;
+font-size: 20px;
+line-height: 24px;
+
+color: #FFFFFF;
+
+mix-blend-mode: hard-light;
+*/
