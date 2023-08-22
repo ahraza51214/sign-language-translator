@@ -78,6 +78,9 @@ const LoginForm = () => {
                 <div>
                     <button className="btn btn-primary btn-sm" type="submit">Continue</button>
                 </div>
+                <div>
+                    <button className="btn btn-primary btn-sm" type="submit">Register</button>
+                </div>
             </form>
             
         </div>
