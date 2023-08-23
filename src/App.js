@@ -5,6 +5,9 @@ import Profile from './Views/Profile';
 import Translate from './Views/Translate';
 
 function App() {
+
+  //console.log(process.env.REACT_APP_API_KEY)
+
   return (
     <BrowserRouter>
      <div className="App">

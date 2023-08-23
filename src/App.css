@@ -1,48 +1,31 @@
+
+
+
 .App {
   text-align: center;
-  /* Rectangle 1 */
   position: absolute;
   width: 100%;
-  /*height: 242px;*/
-  height: 100%;
-  background: #FFCE1F;
+  min-height: 100%;
+  height: 50%;
+  background-color: #FFCE1F;
   color: #FFFFFF;
 }
 
-.App #login-header {
-  /*
-  width: 100%;
-  height: 100%;
-  padding: 10px;
-  border: 5px solid gray;
-  margin: 0;*/
-  /* Signin */
 
-position: absolute;
-width: 490px;
-height: 593px;
-left: 400px;
-top: 88px;
-
-background: orange;
-border-radius: 15px;
-
+#login-header {
+  background-color: orange;
+  border-radius: 15px;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 300px;
+  height: 300px;
+  min-width: 300px;
+  min-height: 300px;
 }
 
-
-/* Lost in Translation */
-/*
-position: absolute;
-width: 181px;
-height: 24px;
-
-font-family: 'Inter';
-font-style: normal;
-font-weight: 700;
-font-size: 20px;
-line-height: 24px;
-
-color: #FFFFFF;
-
-mix-blend-mode: hard-light;
-*/
+.login-err-ms {
+  color: red;
+  font-size: 12px;
+  font-weight: bold;
+}
