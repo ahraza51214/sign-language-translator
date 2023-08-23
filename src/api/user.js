@@ -40,7 +40,11 @@ export const loginUser = async (username) => {
         // If user is not found (i.e., checkForUser returned null)
         if (!user) {
             let newusername = prompt("The user does not exist. Please create a new user");
-            return [null, await createUser(newusername)];
+            if(newusername === null){
+                return [null, null];
+            }else{
+                return [null, await createUser(newusername)];
+            }
         }
 
         return [null, user];
