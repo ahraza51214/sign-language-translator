@@ -68,7 +68,7 @@ export const loginUser = async (username) => {
 */
             let newusername = prompt("The user does not exist. Please create a new user");
             if(newusername === null){
-                //return [null, null];
+                return null;//return [null, null];
             } else {
                 const newUser = await createUser(newusername);
                 return [null, { ...newUser, newUserCreated: true }];  // Add a flag to the returned user
