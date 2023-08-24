@@ -1,14 +1,10 @@
 import { useForm } from "react-hook-form";
-import { loginUser } from '../../api/user';
+//import { loginUser } from '../../api/user';
 import { useNavigate } from 'react-router-dom';
-
+import { useDispatch } from 'react-redux';
+import { loginUserAsync } from '../../redux/slices/loginSlice'; 
 
 const LoginForm = () => {
-    //... (other code)
-
-    
-
-    //... (rest of the component)
     const usernameConfig = {
         required: true,
         minLength: 3
@@ -20,7 +16,7 @@ const LoginForm = () => {
         formState: {errors}
     } = useForm()
     const navigate = useNavigate();
-
+/*
     const onSubmit = async ({ username }) => {
         const [error, user] = await loginUser(username);
         if (!error && user) {
@@ -31,6 +27,23 @@ const LoginForm = () => {
                 // Navigate to the translate route with the username
                 navigate(`/translate/${user.username}`);
             }
+        }
+    };*/
+    const dispatch = useDispatch();
+    //const userState = useSelector(state => state.user);
+
+    const onSubmit = async ({ username }) => {
+        const action = await dispatch(loginUserAsync(username));
+    
+        if (loginUserAsync.fulfilled.match(action)) {
+            const user = action.payload;
+            if (user.newUserCreated) {
+                navigate("/");
+            } else {
+                navigate(`/translate/${user.username}`);
+            }
+        } else if (loginUserAsync.rejected.match(action)) {
+            // Handle errors here
         }
     };
     
@@ -76,3 +89,7 @@ const LoginForm = () => {
 };
 
 export default LoginForm;
+
+
+
+
