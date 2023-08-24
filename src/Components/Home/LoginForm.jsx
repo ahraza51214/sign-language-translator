@@ -1,24 +1,14 @@
-/*
-const LoginForm = () => {
-  return (
-    <>
-      <h2>Whats Your Name</h2>
-      <form>
-        <input type="text" placeholder="Enter Name" />
-        <button>Submit</button>
-      </form>
-    </>
-  );
-};
-
-export default LoginForm;
-*/
 import { useForm } from "react-hook-form";
-import {loginUser} from '../../api/user'
+import { loginUser } from '../../api/user';
+import { useNavigate } from 'react-router-dom';
 
 
 const LoginForm = () => {
+    //... (other code)
 
+    
+
+    //... (rest of the component)
     const usernameConfig = {
         required: true,
         minLength: 3
@@ -29,12 +19,21 @@ const LoginForm = () => {
         handleSubmit,
         formState: {errors}
     } = useForm()
+    const navigate = useNavigate();
 
-    const onSubmit = async ({username}) => {
-        const [error, user] = await loginUser(username)
-        console.log('Error: ', error)
-        console.log('User: ',user)
+    const onSubmit = async ({ username }) => {
+        const [error, user] = await loginUser(username);
+        if (!error && user) {
+            if (user.newUserCreated) {
+                // If a new user was created, navigate back to login page
+                navigate("/");
+            } else {
+                // Navigate to the translate route with the username
+                navigate(`/translate/${user.username}`);
+            }
+        }
     };
+    
     
     console.log(errors);
 

@@ -35,22 +35,26 @@ const createUser = async (username) => {
 
 export const loginUser = async (username) => {
     try {
-        const user = await checkForUser(username);
+        const users = await checkForUser(username);
 
-        // If user is not found (i.e., checkForUser returned null)
-        if (!user) {
+        // If user is not found (i.e., checkForUser returned an empty array)
+        if (!users || users.length === 0) {
             let newusername = prompt("The user does not exist. Please create a new user");
             if(newusername === null){
                 return [null, null];
-            }else{
-                return [null, await createUser(newusername)];
+            } else {
+                const newUser = await createUser(newusername);
+                return [null, { ...newUser, newUserCreated: true }];  // Add a flag to the returned user
             }
         }
 
-        return [null, user];
+        return [null, users[0]];
     } catch (error) {
         console.error(error.message);
         return [error, null];
     }
 }
+
+
+
 
