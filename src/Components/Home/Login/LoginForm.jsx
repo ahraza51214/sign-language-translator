@@ -9,7 +9,6 @@ const LoginForm = () => {
         required: true,
         minLength: 3
     }
-
     const {
         register,
         handleSubmit,
@@ -20,7 +19,7 @@ const LoginForm = () => {
     //const userState = useSelector(state => state.user);
 
     const onSubmit = async ({ username }) => {
-        const action = await dispatch(loginUserAsync(username));
+        const action = dispatch(loginUserAsync(username));
         
         if (loginUserAsync.fulfilled.match(action) && action.payload) { // Check if payload is not null
             const user = action.payload;
@@ -28,7 +27,7 @@ const LoginForm = () => {
             if (user.newUserCreated) { // Now, it's safe to check this property
                 //navigate("/");
                 navigate(`/translate/${user.username}`);
-                alert("Your username is created succesfully. You will now get redirected to our Translation page.");
+                //alert("Your username is created succesfully. You will now get redirected to our Translation page.");
             } else {
                 navigate(`/translate/${user.username}`);
             }
@@ -36,10 +35,6 @@ const LoginForm = () => {
             // Handle errors here
         }
     };
-    
-    
-    
-    
     
     console.log(errors);
 
@@ -74,15 +69,7 @@ const LoginForm = () => {
                     <button className="btn btn-primary btn-sm" type="submit">Continue</button>
                 </div>
             </form>
-            
         </div>
-            
-        
     )
 };
-
 export default LoginForm;
-
-
-
-

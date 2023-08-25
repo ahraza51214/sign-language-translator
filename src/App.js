@@ -1,8 +1,8 @@
 import './App.css';
 import { BrowserRouter, Routes, Route  } from 'react-router-dom';
-import Login from './Views/Home';
-import Profile from './Views/Profile';
-import Translate from './Views/Translate';
+import Login from './Components/Home/Home';
+import Profile from './Components/Home/Profile/Profile';
+import TranslationPage from './Components/Home/Translate/TranslationPage';
 
 function App() {
   return (
@@ -11,7 +11,7 @@ function App() {
               <Routes>
                   <Route path="/" element={<Login />} />
                   <Route path="/profile" element={<Profile />} />
-                  <Route path="/translate/:username" element={<Translate />} />
+                  <Route path="/translate/:username" element={<TranslationPage />} />
               </Routes>
           </div>
       </BrowserRouter>

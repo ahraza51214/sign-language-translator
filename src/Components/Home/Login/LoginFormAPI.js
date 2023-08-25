@@ -1,5 +1,3 @@
-
-
 export const createHeaders = () => {
     const apiKey = process.env.REACT_APP_API_KEY
     return {
@@ -8,9 +6,7 @@ export const createHeaders = () => {
     }
 }
 
-
-
-// Definding the loginUser function.
+// Defining the loginUser function. 
 
 // This function will check if the user exists in the database.
 // If the user does not exsits, the function will return an empty array. 
@@ -48,36 +44,41 @@ export const createUser = async (username) => {
     if (!response.ok) {
         throw new Error('Could not create user with username ' + username);
     }
-
     return await response.json();
 }
 
 export const loginUser = async (username) => {
     try {
-        const users = await checkForUser(username);
-
-        // If user is not found (i.e., checkForUser returned an empty array)
-        // we want a dialog pop-up to ask the user "Do you want create a new user,
-        // or do you want to login with a different user".
-        if (!users || users.length === 0) {
-/*            let response = confirm("The user does not exist. Do you want to create a new user?");
-
-            if(!response){
-                //return [null, null];
-            }else if(response){}
-*/
-            let newusername = prompt("The user does not exist. Please create a new user");
-            if(newusername === null){
-                return null;//return [null, null];
-            } else {
-                const newUser = await createUser(newusername);
-                return [null, { ...newUser, newUserCreated: true }];  // Add a flag to the returned user
-            }
+        const user = await checkForUser(username);
+        if (!user) {
+            const newUser = await createUser(username);
+            return [null, { ...newUser }];  // Add a flag to the returned user
         }
-
-        return [null, users[0]];
-    } catch (error) {
+        else {
+            return [null, user[0]];
+        }
+    } 
+    catch (error) {
         console.error(error.message);
         return [error, null];
     }
 }
+    
+/*
+        // If user is not found (i.e., checkForUser returned an empty array)
+        // we want a dialog pop-up to ask the user "Do you want create a new user,
+        // or do you want to login with a different user".
+        if (!user || user.length === 0 || username === null) {
+                return null; //return [null, null];
+            } else {
+                const newUser = await createUser(username);
+                return [null, { ...newUser }];  // Add a flag to the returned user
+            }
+            return [null, user[0]];
+        }
+
+     catch (error) {
+        console.error(error.message);
+        return [error, null];
+    }
+}*/

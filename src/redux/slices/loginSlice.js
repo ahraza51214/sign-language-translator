@@ -4,10 +4,6 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import {loginUser} from '../../Components/Home/Login/LoginFormAPI'; 
 
 
-
-
-
-
 // Thunk for login user:
 // The function below is called a thunk and allows us to perform async logic. Async
 // code can then be executed and other actions can be dispatched. Thunks are

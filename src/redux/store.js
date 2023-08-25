@@ -12,10 +12,12 @@ export const store = configureStore({
 
 import { configureStore } from '@reduxjs/toolkit';
 import userReducer from './slices/loginSlice';
+import translationReducer from './slices/translationSlice';
 
 const store = configureStore({
     reducer: {
-        user: userReducer
+        user: userReducer,
+        translation: translationReducer
     },
     devTools: true    
 });
