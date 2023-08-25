@@ -26,7 +26,9 @@ const LoginForm = () => {
             const user = action.payload;
     
             if (user.newUserCreated) { // Now, it's safe to check this property
-                navigate("/");
+                //navigate("/");
+                navigate(`/translate/${user.username}`);
+                alert("Your username is created succesfully. You will now get redirected to our Translation page.");
             } else {
                 navigate(`/translate/${user.username}`);
             }
