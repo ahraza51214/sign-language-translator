@@ -50,7 +50,7 @@ export const createUser = async (username) => {
 export const loginUser = async (username) => {
     try {
         const user = await checkForUser(username);
-        if (!user) {
+        if (!user || user.length === 0) {
             const newUser = await createUser(username);
             return [null, { ...newUser }];  // Add a flag to the returned user
         }
@@ -58,11 +58,11 @@ export const loginUser = async (username) => {
             return [null, user[0]];
         }
     } 
-    catch (error) {
-        console.error(error.message);
-        return [error, null];
+        catch (error) {
+           console.error(error.message);
+           return [error, null];
+       }
     }
-}
     
 /*
         // If user is not found (i.e., checkForUser returned an empty array)
