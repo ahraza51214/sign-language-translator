@@ -5,23 +5,14 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 const API_URL = process.env.REACT_APP_API_URL; // Retrieve API_URL from .env
 const API_KEY = process.env.REACT_APP_API_KEY; // Retrieve API_KEY from .env
 
-export const createHeaders = () => {
-    //const apiKey = process.env.REACT_APP_API_KEY
-    return {
-        'Content-Type': 'application/json',
-        'x-api-key': API_KEY
-        
-    }
-}
-
 // Function to perform login
 async function performLogin(username) {
   const loginResponse = await fetch(`${API_URL}`, {
     method: 'GET', // Use GET method for login
-    /*headers: {
+    headers: {
       'Content-Type': 'application/json',
-      'Authorization': `x-api-key: ${API_KEY}`,
-    },*/
+      'x-api-key': `${API_KEY}`,
+    }
 });
 
 if (!loginResponse.ok) {
@@ -38,9 +29,12 @@ async function createUser(username) {
     
     const createUserResponse = await fetch(API_URL, {
         method: 'POST',
-        headers: createHeaders(),
+        headers: {
+            'Content-Type': 'application/json',
+            'x-api-key': `${API_KEY}`,
+          },
         body: JSON.stringify({ 
-            //"Authorization": `x-api-key: ${API_KEY}`,
+            
             username: username,
             translations: []
         })
