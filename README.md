@@ -4,7 +4,7 @@ This app gives the user the option of typing regular text and translate it to si
 The application translate English words and short sentences to American sign language.
 Try and play around with our app. 
 
-# Component Tree
+## Component Tree
 <img width="654" alt="ComponentTreeAssignment2" src="https://github.com/ahraza51214/sign-language-translator/assets/127191401/9d3d8d67-333b-4b4c-ad88-1b58c0fb8b9b">
 
 ## Install
