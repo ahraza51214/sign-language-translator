@@ -1,7 +1,7 @@
 import { useForm } from "react-hook-form";
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { loginUserAsync } from '../../../redux/slices/loginSlice'; 
+import { loginUser } from '../../../redux/slices/loginSlice'; 
 
 
 const LoginForm = () => {
@@ -20,9 +20,9 @@ const LoginForm = () => {
     //const userState = useSelector(state => state.user);
 
     const onSubmit = async ({ username }) => {
-        const action = await dispatch(loginUserAsync(username));
+        const action = await dispatch(loginUser(username));
         
-        if (loginUserAsync.fulfilled.match(action) && action.payload) { // Check if payload is not null
+        if (loginUser.fulfilled.match(action) && action.payload) { // Check if payload is not null
             const user = action.payload;
     
             if (user.newUserCreated) { // Now, it's safe to check this property
@@ -32,7 +32,7 @@ const LoginForm = () => {
             } else {
                 navigate(`/translate/${user.username}`);
             }
-        } else if (loginUserAsync.rejected.match(action)) {
+        } else if (loginUser.rejected.match(action)) {
             // Handle errors here
         }
     };
