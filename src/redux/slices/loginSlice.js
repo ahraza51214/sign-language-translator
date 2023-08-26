@@ -45,7 +45,6 @@ async function createUser(username) {
     }
 
     // User created successfully
-    //return username;
     return await createUserResponse.json();
 }
 
@@ -62,7 +61,6 @@ export const loginUser = createAsyncThunk('user/login',
             const checkUserResponse = await fetch(`${API_URL}?username=${username}`);
             const userFromAPI = await checkUserResponse.json();
 
-        //if (checkUserResponse.ok && userFromAPI && userFromAPI.username) {
         if (checkUserResponse.ok && Array.isArray(userFromAPI) && userFromAPI.length !== 0){
             // User exists, perform login using GET
             const user = await performLogin(username);
