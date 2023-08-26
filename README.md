@@ -30,7 +30,7 @@ This will open a new Webpage in your browser at `localhost:3000`. Remember to us
 
 ## Set-up
 
-This particular app doesnt require any setup, but if it were to use any API keys or URLS, then you would need to make a `.env` file using the following template:
+In order to use our app, you will need to make a `.env` file at the root of the repo using the following template:
 
 ```
 {
