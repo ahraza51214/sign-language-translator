@@ -1,10 +1,10 @@
-import LoginForm from "./Login/LoginForm";
+import LoginPage from "./LoginPage";
 
 const Login = () => {
     return(
         <div id='login-header'>
             <h1>LOGIN</h1>
-            <LoginForm />
+            <LoginPage />
         </div>
     )
 }

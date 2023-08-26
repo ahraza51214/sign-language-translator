@@ -1,10 +1,10 @@
 import { useForm } from "react-hook-form";
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { loginUser } from '../../../redux/slices/loginSlice'; 
+import { loginUser } from '../redux/slices/loginSlice'; 
 
 
-const LoginForm = () => {
+const LoginPage = () => {
     const usernameConfig = {
         required: true,
         minLength: 3
@@ -81,7 +81,7 @@ const LoginForm = () => {
     )
 };
 
-export default LoginForm;
+export default LoginPage;
 
 
 

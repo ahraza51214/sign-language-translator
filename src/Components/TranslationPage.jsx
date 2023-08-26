@@ -3,8 +3,8 @@ import { useDispatch } from "react-redux";
 import {
   addTranslation,
   clearTranslations,
-} from "../../../redux/slices/translationSlice";
-import { mapCharactersToImages } from "../../../signLanguageMapping";
+} from "../redux/slices/translationSlice";
+import { mapCharactersToImages } from "../signLanguageMapping";
 
 function Translation() {
   const dispatch = useDispatch();
