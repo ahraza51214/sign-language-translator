@@ -40,7 +40,7 @@ async function createUser(username) {
         method: 'POST',
         headers: createHeaders(),
         body: JSON.stringify({ 
-            "Authorization": `x-api-key: ${API_KEY}`,
+            //"Authorization": `x-api-key: ${API_KEY}`,
             username: username,
             translations: []
         })
