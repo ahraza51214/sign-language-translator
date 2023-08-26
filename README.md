@@ -1,3 +1,8 @@
+## Contributors
+
+* Ali Hassan Raza (ahraza.devOps@gmail.com)
+* Pau Go Si (paugosi@hotmail.com)
+
 # Sign Language Translator
 
 This app gives the user the option of typing regular text and translate it to sign language. 
@@ -33,11 +38,6 @@ This particular app doesnt require any setup, but if it were to use any API keys
     API_URL : resource url,
 }
 ```
-
-## Contributors
-
-* Ali Hassan Raza (ahraza.devOps@gmail.com)
-* Pau Go Si (paugosi@hotmail.com)
 
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
