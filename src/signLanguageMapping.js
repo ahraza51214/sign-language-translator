@@ -1,13 +1,13 @@
-
 const signImageFilePath = "../translationIndividualSigns/";
 
-export const charToSignImageMapping = new Map();
-"abcdefghijklmnopqrstuvwxyz".split('').forEach((char) => {
-    charToSignImageMapping[char] = `${signImageFilePath}/${char}.png`;
-});
+//We use Object.fromEntries(), map() and split() functions to create object containing key-value pairs for each character and its corresponding image path.
+export const charToSignImageMapping = Object.fromEntries(
+  "abcdefghijklmnopqrstuvwxyz".split('').map(char => [char, `${signImageFilePath}${char}.png`])
+);
 
 export function mapCharactersToImages(inputText) {
-    const characters = inputText.toLowerCase().split('');
+    const characters = inputText.toLowerCase().split('').filter(char => /[a-z]/);
+
     const signLanguageImages = characters.map((char, index) => (
         charToSignImageMapping[char] || ''
     ));
