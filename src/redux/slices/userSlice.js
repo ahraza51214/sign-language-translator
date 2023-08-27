@@ -98,7 +98,11 @@ export const userSlice = createSlice({
             state.isAuthorized = true
         }    
     },
-    [addUserToAPI.fulfilled]: (state, action) => {},
+    [addUserToAPI.fulfilled]: (state, action) => {
+            state.username = action.payload[0].username
+            state.translations = action.payload[0].translations
+            state.isAuthorized = true
+    },
     [addTranslationToAPI.fulfilled]: (state, action) => {}
   }
 });
