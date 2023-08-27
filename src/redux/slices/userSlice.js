@@ -6,29 +6,33 @@ let API_KEY = process.env.REACT_APP_API_KEY;
 // User Async Actions
 export const getCurrentUser = createAsyncThunk(
   "user/getCurrentUser",
-   async (payload) => {
-    return fetch(`${API_URL}/?username=${payload}`, {
+   async ({payload}) => {
+    return fetch(`${API_URL}?username=${payload}`, {
       headers: {"x-api-key": API_KEY,
                 "Content-Type": "application/json"}
     }
-    ).then(response => { return response.json()})
+    ).then(response => { return response.json()[0]})
      .catch(error => console.log(error));
   }
 );
 
 export const addUserToAPI = createAsyncThunk(
   "user/addUserToAPI",
-  async payload => {
-    await fetch(API_URL, {
+  async (payload) => {
+    const response = await fetch(API_URL, {
       method: "POST",
-      headers: {"x-api-key": API_KEY,
-                "Content-Type": 'application/json'},
+      headers: {"x-api-key": API_KEY, "Content-Type": 'application/json'},
       body: JSON.stringify(payload),
-    }).then((response) => response)
-      .then((json) => console.log(json))
-      .catch(error => console.log(error))
+    });
+
+    if (response.ok) {
+      return response.json();
+    } else {
+      throw new Error('Failed to add user');
+    }
   }
 );
+
 
 // Translation Async Actions
 export const addTranslationToAPI = createAsyncThunk(
@@ -90,17 +94,17 @@ export const userSlice = createSlice({
     },
   },
   extraReducers: {
-    [getCurrentUser.fulfilled]: (state, action) => {
+    [getCurrentUser.pending]: (state, action) => {
         console.log("check", action.payload.length !== 0)
             if (action.payload.length !== 0){
-            state.username = action.payload[0].username
-            state.translations = action.payload[0].translations
+            state.username = action.payload.username
+            state.translations = action.payload.translations
             state.isAuthorized = true
         }    
     },
     [addUserToAPI.fulfilled]: (state, action) => {
-            state.username = action.payload[0].username
-            state.translations = action.payload[0].translations
+            state.username = action.payload//.username
+            state.translations = []//action.payload[0].translations
             state.isAuthorized = true
     },
     [addTranslationToAPI.fulfilled]: (state, action) => {}
