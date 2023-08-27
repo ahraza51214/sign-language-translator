@@ -20,7 +20,7 @@ export const getCurrentUser = createAsyncThunk(
 export const addUserToAPI = createAsyncThunk(
   "user/addUserToAPI",
   async (payload) => {
-    const response = await fetch(API_URL, {
+    await fetch(API_URL, {
       method: "POST",
       headers: {"x-api-key": API_KEY, "Content-Type": 'application/json'},
       body: JSON.stringify(payload),
