@@ -25,7 +25,7 @@ export const LoginButton = () => {
   const onSubmit = async () => {
     try {
       // Dispatch the thunk and wait for it
-      const actionResult = await dispatch(getCurrentUser({ payload: username }));
+      const actionResult = await dispatch(getCurrentUser(username ));
       const userData = actionResult.payload;
 
       // Checking if the user data is valid
