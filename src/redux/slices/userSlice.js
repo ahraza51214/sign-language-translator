@@ -6,12 +6,12 @@ let API_KEY = process.env.REACT_APP_API_KEY;
 // User Async Actions
 export const getCurrentUser = createAsyncThunk(
   "user/getCurrentUser",
-   async ({payload}) => {
+   async (payload) => {
     return fetch(`${API_URL}?username=${payload}`, {
       headers: {"x-api-key": API_KEY,
                 "Content-Type": "application/json"}
     }
-    ).then(response => { return response.json()[0]})
+    ).then(response => { return response.json()})
      .catch(error => console.log(error));
   }
 );
@@ -94,7 +94,7 @@ export const userSlice = createSlice({
     },
   },
   extraReducers: {
-    [getCurrentUser.pending]: (state, action) => {
+    [getCurrentUser.fulfilled]: (state, action) => {
         console.log("check", action.payload.length !== 0)
             if (action.payload.length !== 0){
             state.username = action.payload.username
