@@ -22,25 +22,25 @@ export const LoginButton = () => {
     };
   };
 
- const onSubmit = async () => {
-  const userData = await getCurrentUser(username);
+  const onSubmit = async () => {
     try {
-      if (userData.length !== 0) {
-        // Handle the data
-        dispatch(getCurrentUser(username));
-        //setMessage(`logged in user ${username}`);
-        navigate("/translate");
+      // Dispatch the thunk and wait for it
+      const actionResult = await dispatch(getCurrentUser({ payload: username }));
+      const userData = actionResult.payload;
+
+      // Checking if the user data is valid
+      if (userData && userData.username) {
+        navigate(`/translate`);
       } else {
-        // Handle the case when data is empty
-        dispatch(addUserToAPI(create_user_info_object(username)));
-        //setMessage(`Created user ${username}`);
-        navigate("/translate");
+        await dispatch(addUserToAPI({ username, translations: [] }));
+        navigate(`/translate`);
       }
+
     } catch (error) {
-      // Handle unexpected errors here
       console.error("An unexpected error occurred:", error);
     }
-  };
+};
+
 
 
   return (
