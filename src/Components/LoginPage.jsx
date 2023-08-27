@@ -41,7 +41,7 @@ const LoginPage = () => {
     
     
     
-    console.log(errors);
+    //console.log(errors);
 
     const errorMessage = (() => {
         if(!errors.username){

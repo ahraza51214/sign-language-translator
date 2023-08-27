@@ -6,6 +6,7 @@ const API_URL = process.env.REACT_APP_API_URL; // Retrieve API_URL from .env
 const API_KEY = process.env.REACT_APP_API_KEY; // Retrieve API_KEY from .env
 
 // Function to perform login
+/*
 async function performLogin(username) {
   const loginResponse = await fetch(`${API_URL}`, {
     method: 'GET', // Use GET method for login
@@ -17,13 +18,13 @@ async function performLogin(username) {
 
 if (!loginResponse.ok) {
     throw new Error('Login failed');
-  }
+}
 
   // Assuming the server responds with a success status
   const user = { username };
   return user;
 }
-
+*/
 // Function to create a new user
 async function createUser(username) {
     
@@ -63,11 +64,14 @@ export const loginUser = createAsyncThunk('user/login',
 
         if (checkUserResponse.ok && Array.isArray(userFromAPI) && userFromAPI.length !== 0){
             // User exists, perform login using GET
-            const user = await performLogin(username);
+            //const user = await performLogin(username);
 
             // Dispatch the loginSuccess action with the username
             dispatch(loginSuccess(username));
-            return user;
+            
+            return userFromAPI[0];  // Bacause of the way the API is set up, the user object is the first item in the array
+                                    //  This is because the API returns an array of objects and the first item is the user object
+                                    //  If the API returns an array of strings, then the user object will be the first string in the array
         } else {
             // User does not exist, create a new user and then perform login
             const newUser = await createUser(username);
@@ -101,15 +105,18 @@ const userSlice = createSlice({
     name: 'user',
     initialState: {
         isAuthenticated: false,
-        username: ''
+        username: '',
+        userId: ''  // Add userId to the initial state
     },
     reducers: {
-        // You can add other synchronous reducers here if needed
+        // Maybe in the fureture for furher development, we can add synchronous reducers here if needed.
     },
     extraReducers: (builder) => {
+        //This reducer expects that the action.payload contains the id property (i.e., the userId is NOT empty or undefined)
         builder.addCase(loginUser.fulfilled, (state, action) => {
             state.isAuthenticated = true;
             state.username = action.payload.username;
+            state.userId = action.payload.id;  // Store userId in the state
         })
         .addCase(loginUser.rejected, (state, action) => {
             // Handle login error, e.g., set an error state
