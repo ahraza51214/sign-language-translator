@@ -3,7 +3,8 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 let API_URL = process.env.REACT_APP_API_URL;
 let API_KEY = process.env.REACT_APP_API_KEY;
 
-// User Async Actions
+
+// User Actions
 export const getCurrentUser = createAsyncThunk(
   "user/getCurrentUser",
    async (payload) => {
@@ -23,18 +24,14 @@ export const addUserToAPI = createAsyncThunk(
       method: "POST",
       headers: {"x-api-key": API_KEY, "Content-Type": 'application/json'},
       body: JSON.stringify(payload),
-    });
-
-    if (response.ok) {
-      return response.json();
-    } else {
-      throw new Error('Failed to add user');
-    }
+    }).then((response) => response)
+      .then((json) => console.log(json))
+      .catch(error => console.log(error))
   }
 );
 
 
-// Translation Async Actions
+// Translation Actions
 export const addTranslationToAPI = createAsyncThunk(
   "user/addTranslationToAPI",
   async (payload) => {
@@ -51,6 +48,7 @@ export const addTranslationToAPI = createAsyncThunk(
       .catch(error => console.log(error))
   }
 );
+
 
 // User Slice
 export const userSlice = createSlice({
@@ -103,8 +101,8 @@ export const userSlice = createSlice({
         }    
     },
     [addUserToAPI.fulfilled]: (state, action) => {
-            state.username = action.payload//.username
-            state.translations = []//action.payload[0].translations
+            state.username = action.payload
+            state.translations = []
             state.isAuthorized = true
     },
     [addTranslationToAPI.fulfilled]: (state, action) => {}
