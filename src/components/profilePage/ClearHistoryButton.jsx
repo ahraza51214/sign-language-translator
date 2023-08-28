@@ -6,6 +6,7 @@ import { clearTranslationHistory } from "../../redux/slices/userSlice";
 export const ClearHistoryButton = () => {
   const dispatch = useDispatch();
 
+  // dispatches the clearTranslationHistory action
   const handleOnClick = () => {
     dispatch(clearTranslationHistory());
   };

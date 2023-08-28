@@ -7,6 +7,7 @@ export const LougoutButton = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   
+  // dispatches the logout action
   const handleOnClick = () => {
     dispatch(logout());
     navigate("/");

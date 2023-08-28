@@ -12,22 +12,23 @@ export const LoginButton = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const username = useSelector(
+  // state of the passed username in the input text field
+  const usernameInput = useSelector(
     (state) => state.user.loginInputText);
 
-
+  // function to handle the submit button, which runs checkUser to check if username exists. If it doesnt exist length = 0 it calls addUserToApi else it calls getCurrentUser.
   const onSubmit = async () => {
     try {
-      const userData = await checkUser(username);
+      const userData = await checkUser(usernameInput);
       console.log("User data:", userData);
       // Checking if the user data is valid
       if (userData.length === 0 ) {
         console.log("User data is invalid. Adding user to API.");
-        await dispatch(addUserToAPI(createUserObject(username))).then(() => {
+        await dispatch(addUserToAPI(createUserObject(usernameInput))).then(() => {
           navigate(`/translate`);
         });
       } else {
-        dispatch(getCurrentUser(username)).then(() => {
+        dispatch(getCurrentUser(usernameInput)).then(() => {
           navigate(`/translate`);
         });
       }

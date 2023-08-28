@@ -7,6 +7,7 @@ export const LoginInputField = () => {
   const { register } = useForm();
   const dispatch = useDispatch();
   
+  // state of the passed username in the input text field
   const loginInputText = useSelector(
     (state) => state.user.loginInputText
   );
