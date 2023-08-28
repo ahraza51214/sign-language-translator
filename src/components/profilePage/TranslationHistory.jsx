@@ -9,7 +9,7 @@ export const TranslationHistory = () => {
 
   return (
     <div>
-      <h1>Translation History</h1>
+      <h2>Translation History</h2>
       <ul>
         {user.translations.length !== 0 ? (
           displayTranslationHistory.map((item, index) => <li key={index}>{item}</li>)

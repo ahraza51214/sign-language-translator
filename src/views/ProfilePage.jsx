@@ -9,8 +9,7 @@ function ProfilePage() {
 
   return (
     <div>
-      <p>Profile Page</p>
-      <p>Search History:</p>
+      <h1>Profile Page</h1>
       <TranslationHistory />
       <ClearHistoryButton />
       <LougoutButton />
