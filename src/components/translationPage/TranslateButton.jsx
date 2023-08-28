@@ -1,7 +1,7 @@
 // TranslateButton.js
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setTranslatedImages, addTranslationToState, addTranslationToAPI, setLoginInputText, setTranslationInputText } from "../../redux/slices/userSlice";
+import { setTranslatedImages, addTranslationToState, addTranslationToAPI, } from "../../redux/slices/userSlice";
 import { mapCharactersToImages } from "../../signLanguageMapping";
 
 export const TranslateButton = () => {
