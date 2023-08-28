@@ -74,6 +74,7 @@ export const userSlice = createSlice({
     state.isAuthorized = false;
     state.username = ""
     state.translations = []
+    state.translatedImages = []
     },
     setLoginInputText: (state, action) => {
       state.loginInputText = action.payload;
