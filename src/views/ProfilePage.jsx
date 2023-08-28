@@ -1,7 +1,9 @@
 import React from "react";
 import { TranslationHistory } from "../components/profilePage/TranslationHistory";
 import { ClearHistoryButton } from "../components/profilePage/ClearHistoryButton";
-import { LougoutButton } from "../components/profilePage/LogoutButton";
+import { LougoutButton } from "../components/profilePage/LogoutButton"
+import { Link } from "react-router-dom";
+
 
 function ProfilePage() {
 
@@ -12,6 +14,9 @@ function ProfilePage() {
       <TranslationHistory />
       <ClearHistoryButton />
       <LougoutButton />
+      <Link to="/translate">
+        <button>Translate</button>
+      </Link>
     </div>
   );
 };

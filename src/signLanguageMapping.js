@@ -6,10 +6,13 @@ export const charToSignImageMapping = Object.fromEntries(
 );
 
 export function mapCharactersToImages(inputText) {
-    const characters = inputText.toLowerCase().split('').filter(char => /[a-z]/);
+    const characters = inputText.toLowerCase().split('');
 
-    const signLanguageImages = characters.map((char, index) => (
-        charToSignImageMapping[char] || ''
-    ));
+    const signLanguageImages = characters
+        .filter(char => /[a-z]/.test(char)) // Only include characters from 'a' to 'z'
+        .map((char, index) => (
+            charToSignImageMapping[char] || ''
+        ));
+    
     return signLanguageImages;
 }

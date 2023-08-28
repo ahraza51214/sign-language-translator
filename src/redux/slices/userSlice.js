@@ -8,7 +8,7 @@ let API_KEY = process.env.REACT_APP_API_KEY;
 export const getCurrentUser = createAsyncThunk(
   "user/getCurrentUser",
    async (payload) => {
-    return fetch(`${API_URL}?username=${payload}`, {
+    return fetch(`${API_URL}/?username=${payload}`, {
       headers: {"x-api-key": API_KEY,
                 "Content-Type": "application/json"}
     }
@@ -36,7 +36,7 @@ export const addTranslationToAPI = createAsyncThunk(
   "user/addTranslationToAPI",
   async (payload) => {
     console.log(payload)
-    await fetch(`${API_URL}/${payload.username}`, {
+    await fetch(`${API_URL}/${payload.id}`, {
       method: "PATCH",
       headers: {"x-api-key": API_KEY,
                 "Content-Type": 'application/json'},
@@ -54,6 +54,7 @@ export const addTranslationToAPI = createAsyncThunk(
 export const userSlice = createSlice({
   name: "user",
   initialState: {
+    id: 0,
     username: "",
     translations: [],
     isAuthorized: false,
@@ -64,10 +65,12 @@ export const userSlice = createSlice({
   reducers: {
     // User
     login: (state, action) => {
+    state.id = action.payload.id
     state.isAuthorized = true
     state.username = action.payload
     },
     logout: (state, action) => {
+    state.id = 0
     state.isAuthorized = false;
     state.username = ""
     state.translations = []
@@ -95,8 +98,9 @@ export const userSlice = createSlice({
     [getCurrentUser.fulfilled]: (state, action) => {
         console.log("check", action.payload.length !== 0)
             if (action.payload.length !== 0){
-            state.username = action.payload.username
-            state.translations = action.payload.translations
+            state.id = action.payload[0].id
+            state.username = action.payload[0].username
+            state.translations = action.payload[0].translations
             state.isAuthorized = true
         }    
     },
