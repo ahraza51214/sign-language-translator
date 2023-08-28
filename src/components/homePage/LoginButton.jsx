@@ -39,7 +39,7 @@ export const LoginButton = () => {
   return (
     <div>
       <button
-        className="btn btn-primary btn-sm"
+        className="btn btn-primary"
         type="submit"
         onClick={handleSubmit(onSubmit)}
       >

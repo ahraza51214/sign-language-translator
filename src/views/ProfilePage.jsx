@@ -15,7 +15,9 @@ function ProfilePage() {
       <ClearHistoryButton />
       <LougoutButton />
       <Link to="/translate">
-        <button>Translate</button>
+        <button type="button" class="btn btn-success">
+          Translate
+        </button>
       </Link>
     </div>
   );

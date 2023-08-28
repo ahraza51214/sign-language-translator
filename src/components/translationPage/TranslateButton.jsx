@@ -17,5 +17,5 @@ export const TranslateButton = () => {
     dispatch(addTranslationToAPI(signLanguageImages.join(" ")));
   };
 
-  return <button onClick={handleTranslateClick}>Translate</button>;
+  return <button type="button" class="btn btn-primary" onClick={handleTranslateClick}>Translate</button>;
 };
