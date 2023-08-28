@@ -15,6 +15,8 @@ export const InputField = () => {
 
   return (
     <textarea
+      rows="5"
+      cols="40"
       placeholder="Enter text to translate"
       value={translationInputText}
       onChange={handleInputChange}

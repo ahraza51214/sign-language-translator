@@ -45,7 +45,7 @@ export const LoginButton = () => {
         type="submit"
         onClick={handleSubmit(onSubmit)}
       >
-        Continue
+        Login / Create User
       </button>
     </div>
   );

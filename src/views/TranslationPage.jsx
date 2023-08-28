@@ -9,10 +9,16 @@ function TranslationPage() {
 
   return (
     <div>
+      <br />
       <h1>Translation Page</h1>
+      <br />
       <InputField />
+      <br />
       <TranslateButton />
+      <br />
+      <br />
       <OutputField />
+      <br />
       <Link to="/profile">
         <button type="button" className="btn btn-success">
           Profile

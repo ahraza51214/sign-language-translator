@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { logout } from "../../redux/slices/userSlice";
 import { useNavigate } from "react-router-dom";
 
-export const LougoutButton = () => {
+export const LogoutButton = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   

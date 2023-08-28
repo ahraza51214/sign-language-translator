@@ -9,12 +9,14 @@ export const TranslationHistory = () => {
 
   return (
     <div>
-      <h2>Translation History</h2>
-      <ul>
+      <h2>Translation History for user {user.username}</h2>
+      <ul style={{ listStyleType: "none", padding: 0 }}>
         {user.translations.length !== 0 ? (
-          displayTranslationHistory.map((item, index) => <li key={index}>{item}</li>)
+          displayTranslationHistory.map((item, index) => (
+            <li key={index}>{item}</li>
+          ))
         ) : (
-          <p> Translation histoy is empty. </p>
+          <p>Translation history is empty.</p>
         )}
       </ul>
     </div>
