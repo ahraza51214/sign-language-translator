@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { useForm } from "react-hook-form";
 import { getCurrentUser, addUserToAPI } from "../../redux/slices/userSlice";
 import { useNavigate } from "react-router-dom";
+import { checkUser } from "./assets/checkUser";
+import { createUserObject } from "./assets/createUserObject";
 
 
 export const LoginButton = () => {
@@ -13,24 +15,26 @@ export const LoginButton = () => {
   const username = useSelector(
     (state) => state.user.loginInputText);
 
+
   const onSubmit = async () => {
     try {
-      // Dispatch the thunk and wait for it
-      const actionResult = await dispatch(getCurrentUser( username ));
-      const userData = actionResult.payload;
-
+      const [error, userData] = await checkUser(username);
+      console.log("User data:", userData);
       // Checking if the user data is valid
-      if (userData && userData.username) {
+      if (userData.length === 0 ) {
+        console.log("User data is invalid. Adding user to API.");
+        await dispatch(addUserToAPI(createUserObject(username)));
         navigate(`/translate`);
       } else {
-        await dispatch(addUserToAPI( username ));
+        // Add more logging for debugging
+        dispatch(getCurrentUser(username));
         navigate(`/translate`);
       }
-
     } catch (error) {
       console.error("An unexpected error occurred:", error);
+      // Add more error handling here if needed
     }
-};
+  };
 
   return (
     <div>
