@@ -11,13 +11,13 @@ export const TranslateButton = () => {
   );
 
   const userID = useSelector((state) => state.user.id);
-  let current_translation = useSelector((state) => state.user.translations);
+  let currentTranslation = useSelector((state) => state.user.translations);
 
   const handleTranslateClick = () => {
     const signLanguageImages = mapCharactersToImages(translationInputText);
     dispatch(setTranslatedImages(signLanguageImages));
-    dispatch(addTranslationToState([...current_translation, translationInputText]));
-    dispatch(addTranslationToAPI({id: userID, translations: [...current_translation, translationInputText],
+    dispatch(addTranslationToState([...currentTranslation, translationInputText]));
+    dispatch(addTranslationToAPI({id: userID, translations: [...currentTranslation, translationInputText],
       })
     );
   };

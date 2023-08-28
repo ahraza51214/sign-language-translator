@@ -96,13 +96,11 @@ export const userSlice = createSlice({
   },
   extraReducers: {
     [getCurrentUser.fulfilled]: (state, action) => {
-        console.log("check", action.payload.length !== 0)
-            if (action.payload.length !== 0){
-            state.id = action.payload[0].id
-            state.username = action.payload[0].username
-            state.translations = action.payload[0].translations
-            state.isAuthorized = true
-        }    
+      state.id = action.payload[0].id
+      state.username = action.payload[0].username
+      state.translations = action.payload[0].translations
+      state.isAuthorized = true
+        
     },
     [addUserToAPI.fulfilled]: (state, action) => {},
     [addTranslationToAPI.fulfilled]: (state, action) => {}

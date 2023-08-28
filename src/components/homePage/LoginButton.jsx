@@ -22,13 +22,13 @@ export const LoginButton = () => {
       const userData = await checkUser(usernameInput);
       console.log("User data:", userData);
       // Checking if the user data is valid
+      
       if (userData.length === 0 ) {
-        console.log("User data is invalid. Adding user to API.");
-        await dispatch(addUserToAPI(createUserObject(usernameInput))).then(() => {
+          dispatch(addUserToAPI(createUserObject(usernameInput))).then(() => {
           navigate(`/translate`);
-        });
+          });
       } else {
-        dispatch(getCurrentUser(usernameInput)).then(() => {
+          dispatch(getCurrentUser(usernameInput)).then(() => {
           navigate(`/translate`);
         });
       }
