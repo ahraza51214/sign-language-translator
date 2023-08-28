@@ -14,7 +14,7 @@ function TranslationPage() {
       <TranslateButton />
       <OutputField />
       <Link to="/profile">
-        <button type="button" class="btn btn-success">
+        <button type="button" className="btn btn-success">
           Profile
         </button>
       </Link>
