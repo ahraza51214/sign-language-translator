@@ -1,7 +1,7 @@
 // TranslateButton.js
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { setTranslatedImages, addTranslationToState, addTranslationToAPI } from "../../redux/slices/userSlice";
+import { setTranslatedImages, addTranslationToState, addTranslationToAPI, setLoginInputText, setTranslationInputText } from "../../redux/slices/userSlice";
 import { mapCharactersToImages } from "../../signLanguageMapping";
 
 export const TranslateButton = () => {
@@ -17,9 +17,7 @@ export const TranslateButton = () => {
     const signLanguageImages = mapCharactersToImages(translationInputText);
     dispatch(setTranslatedImages(signLanguageImages));
     dispatch(addTranslationToState([...currentTranslation, translationInputText]));
-    dispatch(addTranslationToAPI({id: userID, translations: [...currentTranslation, translationInputText],
-      })
-    );
+    dispatch(addTranslationToAPI({id: userID,translations: [...currentTranslation, translationInputText],}));
   };
 
   return <button type="button" className="btn btn-primary" onClick={handleTranslateClick}>Translate</button>;

@@ -17,7 +17,6 @@ export const LoginButton = () => {
     (state) => state.user.loginInputText);
 
   // function to handle the submit button, which runs checkUser to check if username exists. If it doesnt exist ararylength = 0 and it calls addUserToApi else it calls getCurrentUser.
-  // NB! for some reason it doesnt redirect the user to translationPage first time when creating a user, pressing continue button again will login the user. 
   const onSubmit = async () => {
     try {
       const userData = await checkUser(usernameInput);
@@ -25,9 +24,10 @@ export const LoginButton = () => {
       // Checking if the user data is valid
       
       if (userData.length === 0 ) {
-          dispatch(addUserToAPI(createUserObject(usernameInput))).then(() => {
+          dispatch(addUserToAPI(createUserObject(usernameInput)));
+          await dispatch(getCurrentUser(usernameInput)).then(() => {
           navigate(`/translate`);
-          });
+        });
       } else {
           dispatch(getCurrentUser(usernameInput)).then(() => {
           navigate(`/translate`);

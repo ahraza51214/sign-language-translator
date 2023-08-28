@@ -58,8 +58,8 @@ export const userSlice = createSlice({
     username: "",
     translations: [],
     isAuthorized: false,
-    loginInputText:"",
-    translationInputText:"",
+    loginInputText: "",
+    translationInputText: "",
     translatedImages: [],
   },
   reducers: {
@@ -100,10 +100,14 @@ export const userSlice = createSlice({
       state.username = action.payload[0].username
       state.translations = action.payload[0].translations
       state.isAuthorized = true
-        
+      state.loginInputText = ""  
     },
-    [addUserToAPI.fulfilled]: (state, action) => {},
-    [addTranslationToAPI.fulfilled]: (state, action) => {}
+    [addUserToAPI.fulfilled]: (state, action) => {
+      state.loginInputText = ""  
+    },
+    [addTranslationToAPI.fulfilled]: (state, action) => {
+      state.translationInputText = ""  
+    }
   }
 });
 
