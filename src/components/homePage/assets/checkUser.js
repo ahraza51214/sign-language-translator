@@ -8,8 +8,8 @@ export const checkUser = async (username) => {
             "Content-Type": "application/json"}
         })
         const data = await response.json()
-        return [null, data]
+        return data
     } catch (error) {
-        return [error.message, null]
+        return error.message
     }   
 }

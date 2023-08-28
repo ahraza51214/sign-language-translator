@@ -18,21 +18,21 @@ export const LoginButton = () => {
 
   const onSubmit = async () => {
     try {
-      const [error, userData] = await checkUser(username);
+      const userData = await checkUser(username);
       console.log("User data:", userData);
       // Checking if the user data is valid
       if (userData.length === 0 ) {
         console.log("User data is invalid. Adding user to API.");
-        await dispatch(addUserToAPI(createUserObject(username)));
-        navigate(`/translate`);
+        await dispatch(addUserToAPI(createUserObject(username))).then(() => {
+          navigate(`/translate`);
+        });
       } else {
-        // Add more logging for debugging
-        dispatch(getCurrentUser(username));
-        navigate(`/translate`);
+        dispatch(getCurrentUser(username)).then(() => {
+          navigate(`/translate`);
+        });
       }
     } catch (error) {
-      console.error("An unexpected error occurred:", error);
-      // Add more error handling here if needed
+      console.error("Error in login button:", error);
     }
   };
 

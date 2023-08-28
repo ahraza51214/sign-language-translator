@@ -50,7 +50,7 @@ export const addTranslationToAPI = createAsyncThunk(
 );
 
 
-// User Slice
+// User & Translation Slice
 export const userSlice = createSlice({
   name: "user",
   initialState: {
@@ -104,11 +104,7 @@ export const userSlice = createSlice({
             state.isAuthorized = true
         }    
     },
-    [addUserToAPI.fulfilled]: (state, action) => {
-            state.username = action.payload
-            state.translations = []
-            state.isAuthorized = true
-    },
+    [addUserToAPI.fulfilled]: (state, action) => {},
     [addTranslationToAPI.fulfilled]: (state, action) => {}
   }
 });

@@ -4,6 +4,7 @@ export const TranslationHistory = () => {
   const user = useSelector((state) => state.user);
   
   console.log(user.translations);
+  
   return (
     <div>
       <h1>Translation History</h1>
